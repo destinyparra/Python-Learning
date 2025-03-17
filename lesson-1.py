@@ -644,33 +644,33 @@
 # ║  Expected Output: 
 # ╚══════════════════════════════════════════
 
-# Code starts here 👇
-from collections import Counter
-import heapq
+# # Code starts here 👇
+# from collections import Counter
+# import heapq
 
-class Solution(object):
-    def topKFrequent(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: List[int]
-        """
-        if k == len(nums):
-            return nums
+# class Solution(object):
+#     def topKFrequent(self, nums, k):
+#         """
+#         :type nums: List[int]
+#         :type k: int
+#         :rtype: List[int]
+#         """
+#         if k == len(nums):
+#             return nums
 
-        count = Counter(nums)
+#         count = Counter(nums)
 
-        return heapq.nlargest(k,count.keys(), key=count.get)
+#         return heapq.nlargest(k,count.keys(), key=count.get)
 
-test = Solution()
-print(test.topKFrequent([1,1,1,2,2,100,3,3,3,3,4], 2))
+# test = Solution()
+# print(test.topKFrequent([1,1,1,2,2,100,3,3,3,3,4], 2))
 
 # Once tested, you can comment out the code and move on!
 # ---------------------------------------------------------
 
 
 # ╔══════════════════════════════════════════
-# ║        🐍 Mini Program: ║ 
+# ║        🐍 Mini Program: ║ Encoding and Decoding
 # ╠══════════════════════════════════════════
 # ║  This program 
 # ║  Example Input: 
@@ -678,6 +678,61 @@ print(test.topKFrequent([1,1,1,2,2,100,3,3,3,3,4], 2))
 # ╚══════════════════════════════════════════
 
 # Code starts here 👇
+from typing import List
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        # at the beginning of each string use some sort of delimiter such as '#' preceded by the number of characters in the string
+        # if we edit the string when appending every new string then we are using unecessary space since strings are immutable
+        
+        # create an empty list for what we will be appending to 
+        strings = []
+
+        for s in strs:
+            strings.append(f'{len(s)}#{s}')
+        return "".join(strings)
+
+    def decode(self, s: str) -> List[str]:
+       
+            decoded_list  = [] # this is our list of strs we are going to return 
+
+            moving_index = 0 # this is the index we will be tracking as we go through the string
+
+            while (moving_index < len(s)) :
+                first_occurrence = s.find('#', moving_index) # we want to find the first occurrence of '#' starting from moving_index
+
+                # print(s[moving_index: first_occurrence])
+                # break
+
+                # we want to find the length of this string
+                length_of_str = int(s[moving_index: first_occurrence]) #we get the length of the string from getting the number starting at moving_index until the first_occurrence
+
+                # move our moving_index to the start of our first string 
+                moving_index = first_occurrence + 1
+
+                # we want to add this string to our decoded_list
+                decoded_list.append(s[moving_index : moving_index + length_of_str])
+                
+
+                # now we want to move our moving_index to immediately after this found string
+                moving_index += length_of_str
+
+            # return our list
+            return decoded_list
+
+test = Solution()
+list_to_encode = ["neet","code","love","you"]
+print(f'This is the list to encode: {list_to_encode}')
+
+encoded_string = test.encode(list_to_encode)
+print(f'This is the encoded_string: {encoded_string}')
+
+decoded_string = test.decode(encoded_string)
+print(f'This is the decoded_string: {decoded_string}')
+
+
+
+
 
 # Once tested, you can comment out the code and move on!
 # ---------------------------------------------------------
