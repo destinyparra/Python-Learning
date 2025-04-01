@@ -749,35 +749,35 @@
 # ╚══════════════════════════════════════════
 
 # Code starts here 👇
-from typing import List
-class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [1] * (len(nums))
+# from typing import List
+# class Solution:
+#     def productExceptSelf(self, nums: List[int]) -> List[int]:
+#         res = [1] * (len(nums))
 
-        prefix = 1
-        for i in range(len(nums)):
-            res[i] = prefix
-            prefix *= nums[i]
-            # print(f'This is the element {res[i]} of the result before post')
-        print(f'This is result so far with just our preceeding vals: {res}')
+#         prefix = 1
+#         for i in range(len(nums)):
+#             res[i] = prefix
+#             prefix *= nums[i]
+#             # print(f'This is the element {res[i]} of the result before post')
+#         print(f'This is result so far with just our preceeding vals: {res}')
         
-        postfix = 1
-        for i in range(len(nums) - 1, -1, -1):
-            # print(f'this is i {i}')
-            res[i] *= postfix
-            postfix *= nums[i]
-            print(f'This is the element {res[i]} of the result')
-        return res
+#         postfix = 1
+#         for i in range(len(nums) - 1, -1, -1):
+#             # print(f'this is i {i}')
+#             res[i] *= postfix
+#             postfix *= nums[i]
+#             print(f'This is the element {res[i]} of the result')
+#         return res
 
-test = Solution()
-final = test.productExceptSelf([1,2,3,4])
-print(f'this is the result {final}')
+# test = Solution()
+# final = test.productExceptSelf([1,2,3,4])
+# print(f'this is the result {final}')
 # Once tested, you can comment out the code and move on!
 # ---------------------------------------------------------
 
 
 # ╔══════════════════════════════════════════
-# ║        🐍 Mini Program: ║ 
+# ║        🐍 Mini Program: ║ floor division 
 # ╠══════════════════════════════════════════
 # ║  This program 
 # ║  Example Input: 
@@ -786,6 +786,13 @@ print(f'this is the result {final}')
 
 # Code starts here 👇
 
+import time
+
+for x in range(9):
+    for y in range(9):
+        z = [x//3, y//3]
+        print(f'x is : {x} y is: {y} and z is: {z}')
+        time.sleep(1)
 # Once tested, you can comment out the code and move on!
 # ---------------------------------------------------------
 
